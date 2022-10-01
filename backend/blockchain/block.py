@@ -149,7 +149,7 @@ def main():
 
     genesis_block = Block.genesis()
     #good_block = Block.mine_block(Block.genesis(), 'foo')
-    bad_block = Block.mine_block(Block.genesis(), 'foo')
+    bad_block = Block.mine_block(genesis_block, 'foo')
     bad_block.last_hash = 'evil_data'
 
     try:

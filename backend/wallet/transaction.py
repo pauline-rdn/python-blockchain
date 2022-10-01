@@ -1,4 +1,3 @@
-from email.errors import NonPrintableDefect
 import time
 import uuid
 
@@ -19,7 +18,7 @@ class Transaction:
         output=None,
         input=None
     ):
-            self.id = str(uuid.uuid4())[0:8]
+            self.id = id or str(uuid.uuid4())[0:8]
             self.output = output or self.create_output(
                 sender_wallet,
                 recipient,
@@ -110,7 +109,7 @@ class Transaction:
         if not Wallet.verify(
             transaction.input['public_key'],
             transaction.output,
-            transaction.input['signature'],
+            transaction.input['signature']
         ):
             raise Exception('Invalid signature')
 
@@ -125,7 +124,7 @@ class Transaction:
         return Transaction(input=MINING_REWARD_INPUT, output=output)
 
 def main():
-    transaction = Transaction(Wallet(), 'recipient', 18)
+    transaction = Transaction(Wallet(), 'recipient', 15)
     print(f'transaction.__dict__: {transaction.__dict__}')
 
     transaction_json = transaction.to_json()

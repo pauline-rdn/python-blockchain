@@ -91,9 +91,11 @@ class Wallet:
                 if transaction['input']['address']==address:
                     # Any time the address conducts a new transaction
                     # it resets its balance
-                    balance = transaction['output']['address']
+                    balance = transaction['output'][address]
                 elif address in transaction['output']:
-                    balance += transaction['output']['address']
+                    balance += transaction['output'][address]
+
+        return balance
 
 def main():
     wallet = Wallet()

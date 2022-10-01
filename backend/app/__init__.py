@@ -1,5 +1,4 @@
 from email.quoprimime import body_check
-import json
 import os
 import requests
 import random
@@ -39,7 +38,7 @@ def route_blockchain_range():
     # http://localhost:5000/blockchain/range?start=0&end=11
 
 @app.route('/blockchain/lenght')
-def route_blockchain_lenght():
+def route_blockchain_length():
     return jsonify(len(blockchain.chain))
 
 @app.route('/blockchain/mine')
@@ -67,7 +66,7 @@ def route_wallet_transact():
         )
     else:
         transaction = Transaction(
-            Wallet(), 
+            wallet, 
             transaction_data['recipient'],
             transaction_data['amount']
         )

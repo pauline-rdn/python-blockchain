@@ -1,4 +1,3 @@
-from curses import start_color
 from backend.blockchain.block import Block
 from backend.tests.blockchain.test_block import last_block
 from backend.wallet.transaction import Transaction
@@ -83,7 +82,8 @@ class Blockchain:
             - Each transaction must be valid
         """
 
-        transaction_ids=set()
+        transaction_ids = set()
+
         for i in range(len(chain)):
             block = chain[i]
             has_mining_reward = False
@@ -114,7 +114,7 @@ class Blockchain:
 
                 if historic_balance != transaction.input['amount']:
                     raise Exception(
-                        f'Transaction {transaction.id} has an invalid' \
+                        f'Transaction {transaction.id} has an invalid'\
                         'input_amount'
                     )
                     
